@@ -47,6 +47,21 @@ addon.ROLE_LABELS = {
     ranged = "Ranged",
 }
 
+addon.ROLE_OVERRIDE_LABELS = {
+    maintank = "Tank",
+    melee = "Melee",
+    warriors = "Warrior",
+    healers = "Healer",
+    ranged = "Ranged",
+}
+
+addon.ROLE_OVERRIDE_OPTIONS = {
+    WARRIOR = { "maintank", "warriors" },
+    DRUID = { "maintank", "melee", "healers" },
+    PALADIN = { "healers", "melee" },
+    PRIEST = { "healers", "ranged" },
+}
+
 addon.ROLE_ICONS = {
     maintank = "Interface\\Icons\\Ability_Warrior_DefensiveStance",
     melee = "Interface\\Icons\\Ability_MeleeDamage",
@@ -111,6 +126,15 @@ function addon.IsEligiblePlayer()
     local _, classToken = UnitClass("player")
     local _, raceToken = UnitRace("player")
     return classToken == "PRIEST" and raceToken == "Dwarf"
+end
+
+function addon.IsRoleOverrideAllowed(classToken, roleKey)
+    for _, allowedRole in ipairs(addon.ROLE_OVERRIDE_OPTIONS[classToken] or {}) do
+        if allowedRole == roleKey then
+            return true
+        end
+    end
+    return false
 end
 
 function addon.EnsureDB()

@@ -26,7 +26,7 @@ function addon.ClassifyUnit(entry)
     end
 
     local override = ElysiumFearWardDB.roleOverrides and ElysiumFearWardDB.roleOverrides[entry.guid]
-    if override and addon.ROLE_LABELS[override] then
+    if override and addon.IsRoleOverrideAllowed(entry.classToken, override) then
         return override
     end
     if entry.assignedRole == "TANK" or entry.isMaintank then
