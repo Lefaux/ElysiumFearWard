@@ -5,4 +5,11 @@
 ## Version: 1.0.0
 ## SavedVariables: ElysiumFearWardDB
 
-ElysiumFearWard.lua
+Core.lua
+Roster.lua
+FearWard.lua
+RoleOverrides.lua
+MainWindow.lua
+Settings.lua
+Minimap.lua
+Events.lua
