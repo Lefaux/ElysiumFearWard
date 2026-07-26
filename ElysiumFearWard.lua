@@ -1101,12 +1101,8 @@ local function ensureFrame()
     frame:SetPoint(saved.point, UIParent, saved.relativePoint, saved.x, saved.y)
     frame:SetBackdrop({
         bgFile = "Interface\\Buttons\\WHITE8X8",
-        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-        tile = true,
-        edgeSize = 14,
     })
     frame:SetBackdropColor(0.06, 0.06, 0.06, 0.92)
-    frame:SetBackdropBorderColor(0.5, 0.5, 0.5, 1)
     frame:SetClampedToScreen(true)
     frame:SetMovable(true)
     frame:SetResizable(true)
