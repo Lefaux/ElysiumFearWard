@@ -1,0 +1,8 @@
+## Interface: 11507
+## Title: ElysiumFearWard
+## Notes: Tracks party and raid players missing Fear Ward for dwarf priests.
+## Author: Lefaux
+## Version: 1.0.0
+## SavedVariables: ElysiumFearWardDB
+
+ElysiumFearWard.lua
