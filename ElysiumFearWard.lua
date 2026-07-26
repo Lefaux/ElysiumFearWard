@@ -769,7 +769,43 @@ showRoleOverrideMenu = function(row)
     end
 
     local entry = state.roster[row.guid]
-    if not entry or not EasyMenu then
+    if not entry then
+        return
+    end
+
+    local guid = row.guid
+    local current = ElysiumFearWardDB.roleOverrides[guid]
+
+    if MenuUtil and MenuUtil.CreateContextMenu then
+        MenuUtil.CreateContextMenu(row.clickTarget or row, function(_, rootDescription)
+            rootDescription:CreateTitle(getPlayerDisplayName(entry))
+            rootDescription:CreateRadio(
+                "Automatic (WoW role)",
+                function()
+                    return current == nil
+                end,
+                function()
+                    setRoleOverride(guid, nil)
+                end
+            )
+
+            for _, roleKey in ipairs(ROLE_ORDER) do
+                local overrideRole = roleKey
+                rootDescription:CreateRadio(
+                    ROLE_LABELS[overrideRole],
+                    function()
+                        return current == overrideRole
+                    end,
+                    function()
+                        setRoleOverride(guid, overrideRole)
+                    end
+                )
+            end
+        end)
+        return
+    end
+
+    if not EasyMenu then
         return
     end
 
@@ -782,8 +818,6 @@ showRoleOverrideMenu = function(row)
         )
     end
 
-    local guid = row.guid
-    local current = ElysiumFearWardDB.roleOverrides[guid]
     local menu = {
         {
             text = getPlayerDisplayName(entry),
