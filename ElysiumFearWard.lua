@@ -1145,14 +1145,6 @@ local function ensureFrame()
         frame:Hide()
     end)
 
-    local updateButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-    updateButton:SetSize(62, 18)
-    updateButton:SetPoint("TOPRIGHT", closeButton, "BOTTOMRIGHT", -6, -3)
-    updateButton:SetText("Refresh")
-    updateButton:SetScript("OnClick", function()
-        rebuildRoster()
-    end)
-
     local countText = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     countText:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
     countText:SetJustifyH("LEFT")
@@ -1538,14 +1530,6 @@ local function ensureSettingsFrame()
     fontScrollFrame:SetScrollChild(fontScrollChild)
     state.fontScrollFrame = fontScrollFrame
     state.fontScrollChild = fontScrollChild
-
-    local updateButton = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-    updateButton:SetSize(120, 22)
-    updateButton:SetPoint("BOTTOMLEFT", 14, 14)
-    updateButton:SetText("Refresh Roster")
-    updateButton:SetScript("OnClick", function()
-        rebuildRoster()
-    end)
 
     frame:SetScript("OnShow", function()
         for key, checkbox in pairs(state.settingsRows) do
